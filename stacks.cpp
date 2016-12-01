@@ -1,4 +1,3 @@
-//Eda
 #include <iostream>
 using namespace std;
 
@@ -43,6 +42,15 @@ class Stack {
   int top;
   int maxelem;
 };
+
+void menu(){
+	cout<<"What would you like to do?:\n";
+	cout<<"1: Push:\n";
+	cout<<"2: Pop:\n";
+	cout<<"3: Display:\n";
+	cout<<"4: Exit:\n";
+}
+
 
 int main() {
   Stack * s = new Stack(100);
