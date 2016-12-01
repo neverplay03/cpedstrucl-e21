@@ -49,12 +49,15 @@ void menu(){
 	cout<<"2: Pop:\n";
 	cout<<"3: Display:\n";
 	cout<<"4: Exit:\n";
+	cout<<"Enter choice:";
+	cin>>choice;
 }
 
 
 int main() {
   Stack * s = new Stack(100);
-
+  
+menu();
   s -> display();
   s -> push(1);
   s -> display();
@@ -81,4 +84,5 @@ int main() {
   s -> pop();
   s -> display();
   return 1;
+};
 }
