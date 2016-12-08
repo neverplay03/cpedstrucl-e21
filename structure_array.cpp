@@ -1,3 +1,4 @@
+//Array Manipulation
 #include <iostream>
 #include <conio.h>
 using namespace std;
@@ -16,7 +17,7 @@ int main()
 	while(1)
 	{
 		system ("cls");
-		int choice,copies,position,position2;
+		int choice, copies, position, p2;
 		double price;
 		cout << "Array Manipulation\n";
 		cout << "[1] Display \n";
@@ -36,11 +37,11 @@ int main()
 				{
 					cout << "Enter number of copies: ";
 					cin >> copies;
-					cout<<"Enter price: ";
-					cin>>price;
-					cout<<"Enter position";
-					cin>>position;
-					insert(copies,position,price,book);
+					cout << "Enter price: ";
+					cin >> price;
+					cout << "Enter position: ";
+					cin >> position;
+					insert(position,copies,price,book);
 					display(book);
 				} break;
 			case 3:
@@ -52,11 +53,9 @@ int main()
 				} break;
 			case 4:
 				{
-					cout << "Enter position 1: ";
-					cin >> position;
-					cout<<"Enter position you want to swap with: ";
-					cin>>position2; 
-					swap(position,position2,book);
+					cout << "Enter position 1 and position 2: ";
+					cin >> position >> p2;
+					swap(position,p2,book);
 					display(book);
 				} break;
 			case 5:
@@ -75,28 +74,57 @@ int main()
 
 void display(struct Book book[])
 {
+	cout<<"Copies:"<<endl;
 	for(int i=0; i<5; i++)
 	{
-		cout << "[" << i << "]" << book[i].copies << endl;
+		cout << "[" << i << "] Copies: " << book[i].copies << endl;
+		cout << "[" << i << "] Price: " << book[i].price << endl;
+	}
+
+}
+
+void insert(int position,int copies,double price,struct Book book[])
+{
+	int i;
+	Book temp[5];
+	book[position].copies = copies;
+	book[position].price = price;
+	for(i=position; i<5; i++)
+	{
+		temp[i-position].copies=book[i].copies;
+		temp[i-position].price=book[i].price;
+	
+	}
+	
+	book[position].copies=copies;
+	for (i=position; i<=5; i++)
+	{
+		if (book[i].copies!=0){	
+		book[i+1].copies=temp[i-position].copies;
+		book[i+1].price=temp[i-position].price;
+		
+		
+	}
 	}
 }
 
-void insert(int position, int copies, double price, struct Book book[])
+void del(int position, struct Book book[])
 {
-    int i;
-    Book temp[20];
-    book[position].copies = copies;
-    for(i=position; i<20; i++)
-    {
-        temp[i-position].copies=book[i].copies;
-        temp[i-position].price=book[i].price;
-    }
+	int i;
+	for (i=position; i<5; i++)
+	{
+		book[i]=book[i+1];
+	}
+	book[position].copies=0;
+	book[position].price=0;
+}
 
-    book[position]=copies;
-    for (i=position; i<=20; i++)
-    {
-        book[i+1]=temp[i-position];
-    }
+void swap (int position, int p2, struct Book book[])
+{
+    Book temp[5];
+    temp[position]=book[position];
+    book[position]=book[p2];
+    book[p2]=temp[position];
 }
 
 void del(int position, int a[])
