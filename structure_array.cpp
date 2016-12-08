@@ -2,9 +2,9 @@
 #include <conio.h>
 using namespace std;
 void display (struct Book[]);
-void insert (int, int, struct Book[]);
-void del (int, int[]);
-void swap (int, int, int []);
+void insert (int,int,double, struct Book[]);
+void del (int, struct Book[]);
+void swap (int, int, struct Book[]);
 struct Book {
   	int copies;
   	double price;
@@ -16,7 +16,7 @@ int main()
 	while(1)
 	{
 		system ("cls");
-		int choice,copies;
+		int choice,copies,position,position2;
 		double price;
 		cout << "Array Manipulation\n";
 		cout << "[1] Display \n";
@@ -38,21 +38,25 @@ int main()
 					cin >> copies;
 					cout<<"Enter price: ";
 					cin>>price;
-					insert(copies,price,book);
+					cout<<"Enter position";
+					cin>>position;
+					insert(copies,position,price,book);
 					display(book);
 				} break;
 			case 3:
 				{
 					cout << "Enter position: ";
-					cin >> p;
-					del(p,arr);
+					cin >> position;
+					del(position,book);
 					display(book);
 				} break;
 			case 4:
 				{
-					cout << "Enter position 1 and position 2: ";
-					cin >> p >> p2;
-					swap(p,p2,arr);
+					cout << "Enter position 1: ";
+					cin >> position;
+					cout<<"Enter position you want to swap with: ";
+					cin>>position2; 
+					swap(position,position2,book);
 					display(book);
 				} break;
 			case 5:
@@ -77,26 +81,28 @@ void display(struct Book book[])
 	}
 }
 
-void insert(int v, int p, struct Book book[])
+void insert(int position, int copies, double price, struct Book book[])
 {
-	int i;
-	int x[20]={};
-	for(i=p; i<20; i++)
-	{
-		x[i-p]=book[i];
-	}
-	
-	book[p]=v;
-	for (i=p; i<=20; i++)
-	{
-		book[i+1]=x[i-p];
-	}
+    int i;
+    Book temp[20];
+    book[position].copies = copies;
+    for(i=position; i<20; i++)
+    {
+        temp[i-position].copies=book[i].copies;
+        temp[i-position].price=book[i].price;
+    }
+
+    book[position]=copies;
+    for (i=position; i<=20; i++)
+    {
+        book[i+1]=temp[i-position];
+    }
 }
 
-void del(int p, int a[])
+void del(int position, int a[])
 {
 	int i;
-	for (i=p; i<20; i++)
+	for (i=position; i<20; i++)
 	{
 		a[i]=a[i+1];
 	}
