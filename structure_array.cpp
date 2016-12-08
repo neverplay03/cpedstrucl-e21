@@ -16,7 +16,8 @@ int main()
 	while(1)
 	{
 		system ("cls");
-		int choice, v, p, p2;
+		int choice,copies;
+		double price;
 		cout << "Array Manipulation\n";
 		cout << "[1] Display \n";
 		cout << "[2] Insert \n";
@@ -33,9 +34,11 @@ int main()
 				} break;
 			case 2:
 				{
-					cout << "Enter value and position: ";
-					cin >> v >> p;
-					insert(v,p,arr);
+					cout << "Enter number of copies: ";
+					cin >> copies;
+					cout<<"Enter price: ";
+					cin>>price;
+					insert(copies,price,book);
 					display(book);
 				} break;
 			case 3:
@@ -80,13 +83,13 @@ void insert(int v, int p, struct Book book[])
 	int x[20]={};
 	for(i=p; i<20; i++)
 	{
-		x[i-p]=a[i];
+		x[i-p]=book[i];
 	}
 	
-	a[p]=v;
+	book[p]=v;
 	for (i=p; i<=20; i++)
 	{
-		a[i+1]=x[i-p];
+		book[i+1]=x[i-p];
 	}
 }
 
