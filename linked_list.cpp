@@ -84,7 +84,7 @@ int delete_val(int num) {
 
 
 void delete_all(int num){
-		struct node * n;
+	struct node * n;
   int c = 0;
   n = head;
   while (n != NULL) {
@@ -152,6 +152,7 @@ int main() {
   int i, num, loc;
   struct node * n;
   head = NULL;
+
   while (1) {
   	system("cls");
   	cout<<"Linked List Operations:"<<endl;
