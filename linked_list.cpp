@@ -67,7 +67,7 @@ int delete_val(int num) {
     if (temp -> data == num) {
       if (temp == head) {
         head = temp -> next;
-        free(temp);
+        //free(temp);
         return 1;
       } else {
         prev -> next = temp -> next;
@@ -84,12 +84,12 @@ int delete_val(int num) {
 
 
 void delete_all(int num){
+
 	struct node * n;
   int c = 0;
-  n = head;
+  n= head;
   while (n != NULL) {
-  	
-  		delete_val(num);
+  	delete_val(num);
 	  
     n = n -> next;
     c++;
@@ -105,15 +105,8 @@ void insert(int num) {
     add(num);
   } else {
     while (temp != NULL) {
-      if (temp -> data <= num)
-        c++;
       temp = temp -> next;
     }
-    if (c == 0)
-      add(num);
-   // else if (c < count())
-    //  addafter(num, ++c);
-    else
       append(num);
   }
 }
@@ -134,7 +127,7 @@ void display(struct node * r) {
 
 int search(int num) {
   struct node * n;
-  int c = 0;
+  int c = 1;
   n = head;
   while (n != NULL) {
   	if(n->data==num){
