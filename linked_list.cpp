@@ -6,6 +6,7 @@ using namespace std;
 struct node {
 	int data;
 	struct node * next;
+	struct node * prev;
 } *head;
   
 int count() {
@@ -138,6 +139,19 @@ int search(int num) {
   }
   return c;
 }
+void reverse(struct node** head_ref) {
+    struct node* prev   = NULL;
+    struct node* current = *head_ref;
+    struct node* next;
+    while (current != NULL)
+    {
+        next  = current->next;  
+        current->next = prev;   
+        prev = current;
+        current = next;
+    }
+    *head_ref = prev;
+}
 
 
 
@@ -155,9 +169,10 @@ int main() {
   	cout<<"3. Size"<<endl;
   	cout<<"4. Delete"<<endl;
   	cout<<"5. Search"<<endl;
-  	cout<<"6. Add After"<<endl;
-  	cout<<"7. Delete all"<<endl;
-  	cout<<"8. Exit"<<endl;
+  	cout<<"6. Reverse"
+  	cout<<"7. Add After"<<endl;
+  	cout<<"8. Delete all"<<endl;
+  	cout<<"9. Exit"<<endl;
   	cout<<"Enter choice: ";
   	cin >> i;
   	if(i <= 0){
@@ -199,23 +214,37 @@ int main() {
 			cin>>num;
 			search(num);
 			break;
+			
 		case 6:
+			  if (head == NULL) {
+          cout<<"\nList is Empty\n";
+        } else {
+          cout<<"Element(s) in the list are : ";
+        }
+        reverse(&head);
+        display(n);
+        break;
+        
+		case 7:
 			cout<<"Enter number to add: ";
 			cin>>num;
 			cout<<"Enter location: ";
 			cin>>loc;
 			addafter(num,loc);
 			break;
-		case 7:
+			
+		case 8:
 			cout<<"Enter number to delete: ";
 			cin>>num;
 			delete_all(num);
 			cout<<"Deleted successfully";
 			break;
-		case 8:
+			
+		case 9:
 			return 0;
+			
 		default:
-			cout<<"Invalid option";
+			cout<<"Invalid choice!!";
 		}
 		getch();
 	}
