@@ -24,6 +24,17 @@ using namespace std;
  		          
      }
 
+	 
+     int popValue(){
+         Node *n = head;
+         int ret = n->x;
+        head = head->next;
+        delete n;
+        return ret;
+         
+         
+     }
+
      void display(){
      int counter=1;
      temp=head;
@@ -73,6 +84,7 @@ using namespace std;
  			
  		
  		case 2:
+		cout<<"Pop successful: "<<list.popValue()<<endl;
  		break;
  		
  		case 3:
